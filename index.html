@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Franklin Elliott — SpaceXAI | Data Center Operations</title>
+    <meta name="description" content="Franklin Edward Elliott III — Data Center Operations Technician at SpaceXAI Colossus. NVIDIA GB300 specialist. U.S. Navy Veteran. AEGIS CSOOW.">
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" type="image/png" href="spacexai-x.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        xai: { blue: '#2997ff', purple: '#a855f7' }
+                    },
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'SF Pro Text', 'Inter', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            background: #000;
+            color: #f5f5f7;
+        }
+        .nav-blur {
+            backdrop-filter: saturate(180%) blur(24px);
+            -webkit-backdrop-filter: saturate(180%) blur(24px);
+            background: rgba(0,0,0,0.78);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .hero-bg {
+            background:
+                radial-gradient(ellipse 100% 70% at 50% -15%, rgba(41, 151, 255, 0.22), transparent 55%),
+                radial-gradient(ellipse 50% 40% at 90% 40%, rgba(168, 85, 247, 0.08), transparent 50%),
+                #000;
+        }
+        .btn-primary {
+            background: linear-gradient(180deg, #0084ff 0%, #0071e3 100%);
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.12) inset, 0 4px 18px rgba(0,113,227,0.4);
+            transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.18) inset, 0 8px 28px rgba(0,113,227,0.5);
+        }
+        .btn-secondary {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.16);
+            transition: all 0.25s ease;
+        }
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.11);
+            border-color: rgba(255,255,255,0.3);
+        }
+        .glass {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+        }
+        .text-gradient {
+            background: linear-gradient(90deg, #2997ff, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .section-divider {
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        .role-card {
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(255,255,255,0.07);
+            transition: border-color 0.3s ease;
+        }
+        .role-card:hover {
+            border-color: rgba(41,151,255,0.25);
+        }
+        .pill {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.09);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Nav -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur">
+        <div class="max-w-4xl mx-auto px-5 h-14 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <img src="spacexai-x.png" alt="SpaceXAI" class="h-6 w-6">
+                <span class="text-sm font-semibold tracking-tight">Franklin Elliott</span>
+            </div>
+            <div class="hidden sm:flex items-center gap-7 text-[13px] text-white/55 font-medium">
+                <a href="#experience" class="hover:text-white transition">Experience</a>
+                <a href="#skills" class="hover:text-white transition">Skills</a>
+                <a href="#education" class="hover:text-white transition">Education</a>
+            </div>
+            <a href="mailto:franklin.e.elliott@gmail.com" class="text-[13px] font-medium text-[#2997ff] hover:text-white transition">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero-bg pt-32 pb-20 px-5">
+        <div class="max-w-3xl mx-auto text-center">
+            <div class="flex justify-center mb-6">
+                <img src="spacexai-x.png" alt="SpaceXAI" class="h-14 w-14">
+            </div>
+            <p class="text-sm font-medium text-[#2997ff] tracking-wide mb-4">SpaceXAI · Colossus Supercluster</p>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tighter leading-[1.08] mb-5">
+                Franklin Elliott
+            </h1>
+            <p class="text-xl sm:text-2xl text-white/60 font-normal mb-4">
+                Data Center Operations Technician
+            </p>
+            <p class="text-base text-white/45 max-w-xl mx-auto mb-10 leading-relaxed">
+                Hands-on operations on NVIDIA GB300 NVL72 infrastructure. Former U.S. Navy AEGIS Computer Network Technician (CSOOW). Open to exceptional opportunities only.
+            </p>
+            <div class="flex flex-wrap justify-center gap-3">
+                <a href="mailto:franklin.e.elliott@gmail.com" class="btn-primary inline-flex items-center px-7 py-3 rounded-full text-white text-sm font-medium">
+                    Email me
+                </a>
+                <a href="https://linkedin.com/in/franklinelliott" target="_blank" rel="noopener" class="btn-secondary inline-flex items-center px-7 py-3 rounded-full text-white text-sm font-medium">
+                    LinkedIn
+                </a>
+            </div>
+            <div class="mt-10 flex flex-wrap justify-center gap-6 text-sm text-white/30">
+                <span>Southaven, MS</span>
+                <span>(919) 344-9135</span>
+                <span>franklin.e.elliott@gmail.com</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Experience -->
+    <section id="experience" class="max-w-3xl mx-auto px-5 py-20">
+        <h2 class="text-2xl font-semibold tracking-tight mb-10 text-white/90">Experience</h2>
+
+        <!-- SpaceXAI -->
+        <article class="role-card rounded-2xl p-7 md:p-8 mb-6">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-5">
+                <div>
+                    <div class="flex items-center gap-2.5 mb-1">
+                        <img src="spacexai-x.png" alt="" class="h-5 w-5">
+                        <h3 class="text-xl font-semibold tracking-tight">SpaceXAI</h3>
+                    </div>
+                    <p class="text-white/50 text-sm">Data Center Operations Technician · Colossus Supercluster · Macroharder</p>
+                </div>
+                <p class="text-sm text-white/35 whitespace-nowrap">Present · Southaven / Memphis</p>
+            </div>
+            <p class="text-white/60 text-[15px] leading-relaxed mb-5">
+                Operations on a large-scale NVIDIA GB300 NVL72 deployment across 4 data halls (380 racks each). Each rack contains 18 compute nodes + 9 NVSwitches. Clusters are built 4 compute racks to 1 network rack housing RICE switches, Ethernet switches, and BMC switches.
+            </p>
+            <ul class="space-y-2 text-white/70 text-[15px]">
+                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Install, cable, troubleshoot and decommission liquid-cooled GB300 NVL72 racks</li>
+                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Maintain 18-node + 9-NVSwitch high-density architecture</li>
+                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Network rack operations: RICE, ETH and BMC switches</li>
+                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Juniper and Cisco fabric troubleshooting and repair</li>
+                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Inventory management, Jira, change control, SOPs and escalation</li>
+            </ul>
+            <div class="mt-5 flex flex-wrap gap-2">
+                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">GB300 NVL72</span>
+                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">4 Halls · 380 Racks</span>
+                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">18 Nodes + 9 NVSwitches</span>
+                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">RICE · ETH · BMC</span>
+                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">Juniper · Cisco</span>
+                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">Liquid Cooling</span>
+            </div>
+        </article>
+
+        <!-- CBRE -->
+        <article class="role-card rounded-2xl p-7 md:p-8 mb-6">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-5">
+                <div>
+                    <h3 class="text-xl font-semibold tracking-tight mb-1">CBRE · Hands & Eyes for Kyndryl</h3>
+                    <p class="text-white/50 text-sm">Data Center Technician · Co-location (IBM / Kyndryl)</p>
+                </div>
+                <p class="text-sm text-white/35 whitespace-nowrap">Apr 2025 – Jan 2026 · Durham, NC</p>
+            </div>
+            <p class="text-white/60 text-[15px] leading-relaxed mb-5">
+                Hands-and-eyes support for Kyndryl (IBM infrastructure) in a large co-location facility. Environment included IBM Z-series mainframes, enterprise storage arrays, Dell servers, and multi-vendor gear under strict change management.
+            </p>
+            <ul class="space-y-2 text-white/70 text-[15px]">
+                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Install, decom and cable IBM Z-series, storage, Dell and multi-vendor hardware</li>
+                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Connectivity troubleshooting and component replacement</li>
+                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Environmental monitoring, escalation and full documentation</li>
+                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Strict change control and customer-facing coordination</li>
+            </ul>
+        </article>
+
+        <!-- Navy -->
+        <article class="role-card rounded-2xl p-7 md:p-8">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-5">
+                <div>
+                    <h3 class="text-xl font-semibold tracking-tight mb-1">U.S. Navy · USS Benfold (DDG-65)</h3>
+                    <p class="text-white/50 text-sm">AEGIS Computer Network Technician (V69A) · CSOOW · E-6</p>
+                </div>
+                <p class="text-sm text-white/35 whitespace-nowrap">Yokosuka, Japan · Honorable Discharge Jan 2025</p>
+            </div>
+            <p class="text-white/60 text-[15px] leading-relaxed mb-5">
+                AEGIS Computer Network Technician on USS Benfold (DDG-65), forward-deployed Yokosuka. Operated AEGIS Baseline 9 systems including IBM bladeless servers, iSCSI & SAN storage, combat system consoles, and the full AEGIS Weapon System. Stood watches as Combat Systems Officer of the Watch (CSOOW).
+            </p>
+            <ul class="space-y-2 text-white/70 text-[15px]">
+                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> AEGIS Baseline 9: IBM bladeless servers, iSCSI, SAN</li>
+                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Combat consoles and AEGIS Weapon System support</li>
+                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Combat Systems Officer of the Watch (CSOOW)</li>
+                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Secure networks, fault isolation, DoD cyber standards</li>
+                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Led and mentored junior technicians</li>
+                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Previously held Secret clearance · Honorable Discharge</li>
+            </ul>
+            <div class="mt-5 flex flex-wrap gap-2">
+                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">AEGIS BL9</span>
+                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">CSOOW</span>
+                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">DDG-65 Yokosuka</span>
+                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">E-6</span>
+                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">Secret Clearance</span>
+            </div>
+        </article>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section-divider max-w-3xl mx-auto px-5 py-16">
+        <h2 class="text-2xl font-semibold tracking-tight mb-8 text-white/90">Skills</h2>
+        <div class="grid sm:grid-cols-3 gap-4">
+            <div class="glass rounded-xl p-6">
+                <h3 class="font-semibold mb-3 text-white/90">Data Center Ops</h3>
+                <p class="text-sm text-white/50 leading-relaxed">
+                    Rack & stack · Fiber / Optics · Power · Hardware lifecycle · Asset management · NVIDIA GB300 · Liquid cooling · High-density AI infrastructure
+                </p>
+            </div>
+            <div class="glass rounded-xl p-6">
+                <h3 class="font-semibold mb-3 text-white/90">Networking</h3>
+                <p class="text-sm text-white/50 leading-relaxed">
+                    TCP/IP · VLANs · DNS/DHCP · Juniper · Cisco · RICE / ETH / BMC switches · Routing & switching · Fault isolation
+                </p>
+            </div>
+            <div class="glass rounded-xl p-6">
+                <h3 class="font-semibold mb-3 text-white/90">Security & Process</h3>
+                <p class="text-sm text-white/50 leading-relaxed">
+                    DoD standards · Access control · Change control · Jira · SOPs · MTTD/MTTR · Mentoring · Incident response · CSOOW
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="section-divider max-w-3xl mx-auto px-5 py-16">
+        <h2 class="text-2xl font-semibold tracking-tight mb-8 text-white/90">Education & Certifications</h2>
+        <div class="space-y-3">
+            <div class="glass rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                    <h3 class="font-semibold text-white/90">B.S. Cybersecurity Technology</h3>
+                    <p class="text-sm text-white/45">University of Maryland Global Campus</p>
+                </div>
+                <span class="text-sm text-[#2997ff] font-medium whitespace-nowrap">Expected Aug 2026</span>
+            </div>
+            <div class="glass rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                    <h3 class="font-semibold text-white/90">Undergraduate Certificate · Vulnerability Assessment</h3>
+                    <p class="text-sm text-white/45">University of Maryland Global Campus · Awarded with bachelor’s</p>
+                </div>
+                <span class="text-sm text-[#2997ff] font-medium whitespace-nowrap">With B.S. Aug 2026</span>
+            </div>
+            <div class="glass rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                    <h3 class="font-semibold text-white/90">Cyber Threat Hunting Certificate</h3>
+                    <p class="text-sm text-white/45">University of Maryland Global Campus</p>
+                </div>
+                <span class="text-sm text-green-500 font-medium whitespace-nowrap">May 2026</span>
+            </div>
+            <div class="glass rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                    <h3 class="font-semibold text-white/90">Associate of Arts · Computer Studies</h3>
+                    <p class="text-sm text-white/45">University of Maryland Global Campus</p>
+                </div>
+                <span class="text-sm text-green-500 font-medium whitespace-nowrap">Dec 2025</span>
+            </div>
+        </div>
+
+        <div class="mt-6 grid sm:grid-cols-3 gap-3">
+            <div class="glass rounded-xl p-5 text-center">
+                <div class="font-semibold text-white/90 text-sm">CompTIA Security+</div>
+                <div class="text-xs text-white/40 mt-1">SY0-701 · Feb 2026</div>
+            </div>
+            <div class="glass rounded-xl p-5 text-center">
+                <div class="font-semibold text-white/90 text-sm">CDCTP®</div>
+                <div class="text-xs text-white/40 mt-1">Data Centre Tech · Sep 2025</div>
+            </div>
+            <div class="glass rounded-xl p-5 text-center">
+                <div class="font-semibold text-white/90 text-sm">First Aid / CPR / AED</div>
+                <div class="text-xs text-white/40 mt-1">Heartsaver · 2025</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-divider max-w-3xl mx-auto px-5 py-20 text-center">
+        <h2 class="text-3xl font-semibold tracking-tight mb-4">Happy where I am.<br>Open to what’s next.</h2>
+        <p class="text-white/50 mb-8 max-w-md mx-auto leading-relaxed">
+            I love my work at SpaceXAI. I’m not looking to leave — but if you have something truly exceptional, I’d be glad to talk.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3">
+            <a href="mailto:franklin.e.elliott@gmail.com" class="btn-primary inline-flex items-center px-7 py-3 rounded-full text-white text-sm font-medium">
+                Email me
+            </a>
+            <a href="https://linkedin.com/in/franklinelliott" target="_blank" rel="noopener" class="btn-secondary inline-flex items-center px-7 py-3 rounded-full text-white text-sm font-medium">
+                LinkedIn
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/6 py-8 px-5">
+        <div class="max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/30">
+            <p>© 2026 Franklin Edward Elliott III</p>
+            <p>Data Center Operations · AI Infrastructure · U.S. Navy Veteran</p>
+            <p>Made with <span class="text-gradient font-medium">Grok 4.5</span></p>
+        </div>
+    </footer>
+</body>
+</html>
