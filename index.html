@@ -12,7 +12,7 @@
     <meta property="og:url" content="https://franklinelliott.github.io/">
     <meta property="og:title" content="Franklin Elliott — SpaceXAI | Data Center Operations">
     <meta property="og:description" content="Data Center Operations Technician at SpaceXAI Colossus. NVIDIA GB300 specialist. U.S. Navy Veteran.">
-    <meta property="og:image" content="https://franklinelliott.github.io/portrait.webp">
+    <meta property="og:image" content="https://franklinelliott.github.io/portrait-studio.webp">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Franklin Elliott — Data Center Operations">
     <meta name="twitter:description" content="SpaceXAI Colossus · NVIDIA GB300 · Navy Veteran · Builder">
@@ -175,13 +175,14 @@
       }
       .hero-inner { position: relative; width: 100%; max-width: 1080px; }
 
-      /* Apple-style hero with integrated portrait */
+      
+      /* Product-stage hero (Apple / Terafab style) */
       .hero-layout {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 32px;
-        width: min(1080px, 100%);
+        gap: 36px;
+        width: min(1120px, 100%);
         margin: 0 auto;
         position: relative;
       }
@@ -190,68 +191,106 @@
           flex-direction: row;
           align-items: center;
           justify-content: space-between;
-          gap: 56px;
+          gap: 64px;
           text-align: left;
         }
-        .hero-copy { flex: 1 1 0; min-width: 0; max-width: 560px; }
+        .hero-copy {
+          flex: 1 1 0;
+          min-width: 0;
+          max-width: 520px;
+          order: 1;
+        }
+        .hero-visual {
+          order: 2;
+          flex: 0 0 auto;
+        }
         .hero-actions { justify-content: flex-start; }
         .hero-meta { justify-content: flex-start; }
         .hero-lede { margin-left: 0; margin-right: 0; }
       }
 
-      .hero-portrait {
+      /* The product stage — large rounded panel, not a circle */
+      .hero-visual {
         position: relative;
-        width: min(240px, 58vw);
-        flex-shrink: 0;
+        width: min(100%, 420px);
         opacity: 0;
-        animation: rise 1s var(--ease-out) 0.08s forwards;
+        animation: rise 1.05s var(--ease-out) 0.06s forwards;
       }
       @media (min-width: 900px) {
-        .hero-portrait { width: min(360px, 36vw); }
+        .hero-visual { width: min(480px, 44vw); }
       }
-      .hero-portrait::before {
+      .hero-visual::before {
         content: "";
         position: absolute;
-        inset: -18%;
-        border-radius: 50%;
+        inset: -12% -8% -18% -8%;
         background:
-          radial-gradient(circle at 50% 40%, rgba(41,151,255,0.28), transparent 62%),
-          radial-gradient(circle at 70% 70%, rgba(255,255,255,0.06), transparent 55%);
-        filter: blur(8px);
+          radial-gradient(ellipse 70% 60% at 50% 40%, rgba(41,151,255,0.22), transparent 70%),
+          radial-gradient(ellipse 50% 40% at 80% 80%, rgba(255,255,255,0.05), transparent 60%);
+        filter: blur(20px);
         z-index: 0;
         pointer-events: none;
       }
-      .hero-portrait-frame {
+      .hero-stage {
         position: relative;
         z-index: 1;
-        aspect-ratio: 1;
-        border-radius: 50%;
+        border-radius: 28px;
         overflow: hidden;
-        background: #111;
+        background: #0a0a0a;
+        aspect-ratio: 4 / 5;
         box-shadow:
-          0 0 0 1px rgba(255,255,255,0.12),
-          0 0 0 6px rgba(255,255,255,0.04),
-          0 24px 64px rgba(0,0,0,0.55),
-          0 8px 24px rgba(41,151,255,0.12);
+          0 0 0 1px rgba(255,255,255,0.1),
+          0 2px 4px rgba(0,0,0,0.2),
+          0 24px 48px rgba(0,0,0,0.45),
+          0 48px 96px rgba(0,0,0,0.35);
+        transform: perspective(1200px) rotateY(-2deg) rotateX(1deg);
+        transition: transform 0.6s var(--ease-out);
       }
-      .hero-portrait-frame img {
+      @media (min-width: 900px) {
+        .hero-stage { border-radius: 32px; }
+        .hero-layout:hover .hero-stage {
+          transform: perspective(1200px) rotateY(-1deg) rotateX(0.5deg) translateY(-4px);
+        }
+      }
+      @media (max-width: 899px) {
+        .hero-stage { transform: none; border-radius: 24px; }
+      }
+      .hero-stage img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: center 18%;
+        object-position: center 22%;
         display: block;
-        transform: scale(1.02);
       }
-      .hero-portrait-ring {
+      /* Soft top highlight like product glass */
+      .hero-stage::after {
+        content: "";
         position: absolute;
-        inset: -3px;
-        border-radius: 50%;
-        z-index: 2;
+        inset: 0;
+        border-radius: inherit;
         pointer-events: none;
-        background: linear-gradient(145deg, rgba(255,255,255,0.35), rgba(255,255,255,0.02) 40%, rgba(41,151,255,0.25) 100%);
-        -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.5px));
-        mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.5px));
+        background: linear-gradient(
+          165deg,
+          rgba(255,255,255,0.14) 0%,
+          rgba(255,255,255,0.03) 28%,
+          transparent 48%,
+          rgba(0,0,0,0.15) 100%
+        );
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
       }
+      /* Floating caption chip under the stage */
+      .hero-stage-caption {
+        position: relative;
+        z-index: 2;
+        margin-top: 14px;
+        text-align: center;
+        font-size: 12px;
+        color: var(--subtle);
+        letter-spacing: 0.02em;
+      }
+      @media (min-width: 900px) {
+        .hero-stage-caption { text-align: left; padding-left: 4px; }
+      }
+
 
       .eyebrow {
         font-size: 17px; font-weight: 600; color: var(--blue);
@@ -643,7 +682,7 @@
         .hero h1 { font-size: 34px; }
         .hero-role { font-size: 18px; }
         .hero-lede { font-size: 15px; }
-        .hero-portrait { width: min(200px, 52vw); }
+        
         .section-title { font-size: 28px; }
         .section-sub { font-size: 16px; margin-bottom: 32px; }
         .project { min-height: 0; padding: 22px 18px 20px; }
@@ -682,12 +721,6 @@
     <header class="hero">
         <div class="hero-inner">
             <div class="hero-layout">
-                <div class="hero-portrait" aria-hidden="false">
-                    <div class="hero-portrait-frame">
-                        <img src="portrait.webp" alt="Franklin Elliott" width="800" height="800" decoding="async" fetchpriority="high">
-                    </div>
-                    <div class="hero-portrait-ring" aria-hidden="true"></div>
-                </div>
                 <div class="hero-copy">
                     <p class="eyebrow">SpaceXAI · Colossus Supercluster</p>
                     <h1>Franklin Elliott</h1>
@@ -706,6 +739,12 @@
                         <span>Southaven, MS</span>
                         <span>franklin.e.elliott@gmail.com</span>
                     </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-stage">
+                        <img src="portrait-studio.webp" alt="Franklin Elliott" width="960" height="1200" decoding="async" fetchpriority="high">
+                    </div>
+                    <p class="hero-stage-caption">Data center ops · Colossus</p>
                 </div>
             </div>
         </div>
@@ -970,6 +1009,6 @@
         nodes.forEach(function (n) { io.observe(n); });
       })();
     </script>
-<!-- cache-bust: 1786083266 -->
+<!-- cache-bust: 1786083586 -->
 </body>
 </html>
