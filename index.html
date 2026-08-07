@@ -8,6 +8,15 @@
     <title>Franklin Elliott — SpaceXAI | Data Center Operations</title>
     <meta name="description" content="Franklin Elliott — Data Center Operations Technician at SpaceXAI Colossus. NVIDIA GB300 specialist. U.S. Navy Veteran. B.S. Cybersecurity Technology, UMGC. AEGIS Computer Network Technician (ACNT).">
     <meta name="theme-color" content="#000000">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://franklinelliott.github.io/">
+    <meta property="og:title" content="Franklin Elliott — SpaceXAI | Data Center Operations">
+    <meta property="og:description" content="Data Center Operations Technician at SpaceXAI Colossus. NVIDIA GB300 specialist. U.S. Navy Veteran. Projects for streams, AI infra training, and content tools.">
+    <meta property="og:image" content="https://franklinelliott.github.io/spacexai-x.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Franklin Elliott — Data Center Operations">
+    <meta name="twitter:description" content="SpaceXAI Colossus · NVIDIA GB300 · Navy Veteran · Builder">
+    <link rel="canonical" href="https://franklinelliott.github.io/">
     <link rel="icon" type="image/png" href="spacexai-x.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -87,6 +96,27 @@
             background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.09);
         }
+        .project-card {
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(255,255,255,0.07);
+            transition: border-color 0.3s ease, transform 0.25s ease, background 0.25s ease;
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+        .project-card:hover {
+            border-color: rgba(41,151,255,0.35);
+            background: rgba(255,255,255,0.045);
+            transform: translateY(-2px);
+        }
+        .project-card:focus-visible {
+            outline: 2px solid #2997ff;
+            outline-offset: 3px;
+        }
+        .sr-only {
+            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -100,10 +130,14 @@
             </div>
             <div class="hidden sm:flex items-center gap-7 text-[13px] text-white/55 font-medium">
                 <a href="#experience" class="hover:text-white transition">Experience</a>
+                <a href="#projects" class="hover:text-white transition">Projects</a>
                 <a href="#skills" class="hover:text-white transition">Skills</a>
                 <a href="#education" class="hover:text-white transition">Education</a>
             </div>
-            <a href="mailto:franklin.e.elliott@gmail.com" class="text-[13px] font-medium text-[#2997ff] hover:text-white transition">Contact</a>
+            <div class="flex items-center gap-4">
+                <a href="https://github.com/FranklinElliott" target="_blank" rel="noopener noreferrer" class="text-[13px] font-medium text-white/55 hover:text-white transition hidden xs:inline sm:inline">GitHub</a>
+                <a href="mailto:franklin.e.elliott@gmail.com" class="text-[13px] font-medium text-[#2997ff] hover:text-white transition">Contact</a>
+            </div>
         </div>
     </nav>
 
@@ -127,8 +161,11 @@
                 <a href="mailto:franklin.e.elliott@gmail.com" class="btn-primary inline-flex items-center px-7 py-3 rounded-full text-white text-sm font-medium">
                     Email me
                 </a>
-                <a href="https://linkedin.com/in/franklinelliott" target="_blank" rel="noopener" class="btn-secondary inline-flex items-center px-7 py-3 rounded-full text-white text-sm font-medium">
+                <a href="https://linkedin.com/in/franklinelliott" target="_blank" rel="noopener noreferrer" class="btn-secondary inline-flex items-center px-7 py-3 rounded-full text-white text-sm font-medium">
                     LinkedIn
+                </a>
+                <a href="https://github.com/FranklinElliott" target="_blank" rel="noopener noreferrer" class="btn-secondary inline-flex items-center px-7 py-3 rounded-full text-white text-sm font-medium">
+                    GitHub
                 </a>
             </div>
             <div class="mt-10 flex flex-wrap justify-center gap-6 text-sm text-white/30">
@@ -237,6 +274,91 @@
         </article>
     </section>
 
+
+    <!-- Projects -->
+    <section id="projects" class="section-divider max-w-3xl mx-auto px-5 py-16">
+        <h2 class="text-2xl font-semibold tracking-tight mb-3 text-white/90">Projects</h2>
+        <p class="text-white/45 text-[15px] mb-8 max-w-xl leading-relaxed">
+            Live tools for the floor, the stream, and the timeline — built and shipped publicly.
+        </p>
+        <div class="grid sm:grid-cols-2 gap-4">
+            <a class="project-card rounded-2xl p-6" href="https://franklinelliott.github.io/gb300-nvl72-su-explorer/" target="_blank" rel="noopener noreferrer">
+                <div class="flex items-start justify-between gap-3 mb-3">
+                    <h3 class="font-semibold text-white/90 tracking-tight">GB300 NVL72 Explorer</h3>
+                    <span class="text-[11px] uppercase tracking-wide text-[#2997ff]/Live</span>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed mb-4">
+                    Interactive 3D schematic of a Dell IR9048 / GB300 NVL72 rack with field troubleshooting guidance for CT, NVS, and cable cartridges.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">Three.js</span>
+                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">TypeScript</span>
+                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">Ops training</span>
+                </div>
+            </a>
+            <a class="project-card rounded-2xl p-6" href="https://franklinelliott.github.io/clip-desk/" target="_blank" rel="noopener noreferrer">
+                <div class="flex items-start justify-between gap-3 mb-3">
+                    <h3 class="font-semibold text-white/90 tracking-tight">Clip Desk</h3>
+                    <span class="text-[11px] uppercase tracking-wide text-[#2997ff]">Live</span>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed mb-4">
+                    Twitch clip workbench: score viral peaks, draft X / TikTok / Shorts / Reels captions, mark trims, and queue posts.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">React</span>
+                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">Twitch Helix</span>
+                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">Creators</span>
+                </div>
+            </a>
+            <a class="project-card rounded-2xl p-6" href="https://franklinelliott.github.io/emote-studio/" target="_blank" rel="noopener noreferrer">
+                <div class="flex items-start justify-between gap-3 mb-3">
+                    <h3 class="font-semibold text-white/90 tracking-tight">Emote Studio</h3>
+                    <span class="text-[11px] uppercase tracking-wide text-[#2997ff]">Live</span>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed mb-4">
+                    Create, recolor, and export Twitch + 7TV emote packs (PNG sizes and animated GIF) entirely in the browser.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">Canvas</span>
+                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">7TV</span>
+                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">Client-side</span>
+                </div>
+            </a>
+            <a class="project-card rounded-2xl p-6" href="https://franklinelliott.github.io/cough-counter/" target="_blank" rel="noopener noreferrer">
+                <div class="flex items-start justify-between gap-3 mb-3">
+                    <h3 class="font-semibold text-white/90 tracking-tight">Cough Counter</h3>
+                    <span class="text-[11px] uppercase tracking-wide text-[#2997ff]">Live</span>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed mb-4">
+                    Transparent OBS Browser Source with manual hotkeys, mic auto-detect, live room sync, and per-hour stats.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">OBS</span>
+                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">Web Audio</span>
+                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">Streaming</span>
+                </div>
+            </a>
+            <a class="project-card rounded-2xl p-6 sm:col-span-2" href="https://franklinelliott.github.io/creeationally/" target="_blank" rel="noopener noreferrer">
+                <div class="flex items-start justify-between gap-3 mb-3">
+                    <h3 class="font-semibold text-white/90 tracking-tight">Creeationally — A–Z Marathon Overlay</h3>
+                    <span class="text-[11px] uppercase tracking-wide text-[#2997ff]">Live</span>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed mb-4">
+                    Alphabetical game marathon control panel + themed OBS overlay: per-letter covers, dual timers, challenges, multi-option letters.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">OBS overlay</span>
+                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">Streamer tools</span>
+                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">Static site</span>
+                </div>
+            </a>
+        </div>
+        <p class="mt-6 text-sm text-white/35">
+            Source on
+            <a href="https://github.com/FranklinElliott" target="_blank" rel="noopener noreferrer" class="text-[#2997ff] hover:text-white transition">github.com/FranklinElliott</a>
+        </p>
+    </section>
+
     <!-- Skills -->
     <section id="skills" class="section-divider max-w-3xl mx-auto px-5 py-16">
         <h2 class="text-2xl font-semibold tracking-tight mb-8 text-white/90">Skills</h2>
@@ -320,7 +442,7 @@
             <a href="mailto:franklin.e.elliott@gmail.com" class="btn-primary inline-flex items-center px-7 py-3 rounded-full text-white text-sm font-medium">
                 Email me
             </a>
-            <a href="https://linkedin.com/in/franklinelliott" target="_blank" rel="noopener" class="btn-secondary inline-flex items-center px-7 py-3 rounded-full text-white text-sm font-medium">
+            <a href="https://linkedin.com/in/franklinelliott" target="_blank" rel="noopener noreferrer" class="btn-secondary inline-flex items-center px-7 py-3 rounded-full text-white text-sm font-medium">
                 LinkedIn
             </a>
         </div>
@@ -330,10 +452,13 @@
     <footer class="border-t border-white/6 py-8 px-5">
         <div class="max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/30">
             <p>© 2026 Franklin Elliott</p>
-            <p>Data Center Operations · AI Infrastructure · U.S. Navy Veteran</p>
+            <p class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+                <span>Data Center Ops · AI Infrastructure · U.S. Navy Veteran</span>
+                <a href="https://github.com/FranklinElliott" target="_blank" rel="noopener noreferrer" class="hover:text-white/60 transition">GitHub</a>
+            </p>
             <p>Made with <span class="text-gradient font-medium">Grok</span></p>
         </div>
     </footer>
-<!-- cache-bust: 1785432248 -->
+<!-- cache-bust: 1786081504 -->
 </body>
 </html>
