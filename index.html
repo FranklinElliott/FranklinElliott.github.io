@@ -6,459 +6,800 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Franklin Elliott — SpaceXAI | Data Center Operations</title>
-    <meta name="description" content="Franklin Elliott — Data Center Operations Technician at SpaceXAI Colossus. NVIDIA GB300 specialist. U.S. Navy Veteran. B.S. Cybersecurity Technology, UMGC. AEGIS Computer Network Technician (ACNT).">
+    <meta name="description" content="Franklin Elliott — Data Center Operations Technician at SpaceXAI Colossus. NVIDIA GB300 specialist. U.S. Navy Veteran. B.S. Cybersecurity Technology, UMGC.">
     <meta name="theme-color" content="#000000">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://franklinelliott.github.io/">
     <meta property="og:title" content="Franklin Elliott — SpaceXAI | Data Center Operations">
-    <meta property="og:description" content="Data Center Operations Technician at SpaceXAI Colossus. NVIDIA GB300 specialist. U.S. Navy Veteran. Projects for streams, AI infra training, and content tools.">
+    <meta property="og:description" content="Data Center Operations Technician at SpaceXAI Colossus. NVIDIA GB300 specialist. U.S. Navy Veteran.">
     <meta property="og:image" content="https://franklinelliott.github.io/spacexai-x.png">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Franklin Elliott — Data Center Operations">
     <meta name="twitter:description" content="SpaceXAI Colossus · NVIDIA GB300 · Navy Veteran · Builder">
     <link rel="canonical" href="https://franklinelliott.github.io/">
     <link rel="icon" type="image/png" href="spacexai-x.png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        xai: { blue: '#2997ff', purple: '#a855f7' }
-                    },
-                    fontFamily: {
-                        sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'SF Pro Text', 'Inter', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
     <style>
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
-            -webkit-font-smoothing: antialiased;
-            background: #000;
-            color: #f5f5f7;
+      :root {
+        --bg: #000000;
+        --bg-elevated: #0a0a0a;
+        --surface: rgba(255,255,255,0.04);
+        --surface-hover: rgba(255,255,255,0.07);
+        --fg: #f5f5f7;
+        --muted: #a1a1a6;
+        --subtle: #6e6e73;
+        --border: rgba(255,255,255,0.08);
+        --border-strong: rgba(255,255,255,0.14);
+        --blue: #2997ff;
+        --blue-btn: #0071e3;
+        --blue-btn-hover: #0077ed;
+        --radius-sm: 12px;
+        --radius-md: 18px;
+        --radius-lg: 28px;
+        --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+        --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+        --max: 980px;
+        --nav-h: 52px;
+      }
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      }
+      body {
+        margin: 0;
+        font-family: var(--font);
+        background: var(--bg);
+        color: var(--fg);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        line-height: 1.47059;
+        letter-spacing: -0.022em;
+      }
+      a { color: inherit; text-decoration: none; }
+      img { display: block; max-width: 100%; }
+      button { font: inherit; cursor: pointer; }
+
+      /* Nav — Apple global nav */
+      .nav {
+        position: fixed; inset: 0 0 auto 0; z-index: 100;
+        height: var(--nav-h);
+        display: flex; align-items: center;
+        backdrop-filter: saturate(180%) blur(20px);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        background: rgba(0,0,0,0.72);
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+      }
+      .nav.scrolled { border-bottom-color: var(--border); background: rgba(0,0,0,0.82); }
+      .nav-inner {
+        width: min(var(--max), 100% - 40px);
+        margin: 0 auto;
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 20px;
+      }
+      .nav-brand {
+        display: flex; align-items: center; gap: 10px;
+        font-size: 14px; font-weight: 600; letter-spacing: -0.01em;
+      }
+      .nav-brand img { width: 20px; height: 20px; }
+      .nav-links {
+        display: none; align-items: center; gap: 28px;
+        font-size: 12px; color: var(--muted); font-weight: 400;
+      }
+      .nav-links a {
+        transition: color 0.2s var(--ease);
+      }
+      .nav-links a:hover { color: var(--fg); }
+      .nav-cta {
+        font-size: 12px; font-weight: 400; color: var(--blue);
+        transition: opacity 0.2s var(--ease);
+      }
+      .nav-cta:hover { opacity: 0.8; }
+      @media (min-width: 720px) {
+        .nav-links { display: flex; }
+      }
+
+      /* Hero */
+      .hero {
+        min-height: 100svh;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        text-align: center;
+        padding: calc(var(--nav-h) + 48px) 20px 80px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute; inset: 0;
+        background:
+          radial-gradient(ellipse 80% 50% at 50% -10%, rgba(41,151,255,0.18), transparent 55%),
+          radial-gradient(ellipse 40% 30% at 80% 60%, rgba(255,255,255,0.03), transparent 50%);
+        pointer-events: none;
+      }
+      .hero-inner { position: relative; width: min(720px, 100%); }
+      .hero-logo {
+        width: 56px; height: 56px; margin: 0 auto 28px;
+        opacity: 0; animation: rise 0.9s var(--ease-out) 0.05s forwards;
+      }
+      .eyebrow {
+        font-size: 17px; font-weight: 600; color: var(--blue);
+        margin: 0 0 12px;
+        letter-spacing: -0.01em;
+        opacity: 0; animation: rise 0.9s var(--ease-out) 0.12s forwards;
+      }
+      .hero h1 {
+        margin: 0 0 16px;
+        font-size: clamp(40px, 8vw, 64px);
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        line-height: 1.05;
+        opacity: 0; animation: rise 0.9s var(--ease-out) 0.18s forwards;
+      }
+      .hero-role {
+        margin: 0 0 20px;
+        font-size: clamp(21px, 3.5vw, 28px);
+        font-weight: 400;
+        color: var(--muted);
+        letter-spacing: -0.02em;
+        opacity: 0; animation: rise 0.9s var(--ease-out) 0.26s forwards;
+      }
+      .hero-lede {
+        margin: 0 auto 36px;
+        max-width: 34em;
+        font-size: 17px;
+        line-height: 1.55;
+        color: var(--subtle);
+        font-weight: 400;
+        opacity: 0; animation: rise 0.9s var(--ease-out) 0.34s forwards;
+      }
+      .hero-actions {
+        display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+        opacity: 0; animation: rise 0.9s var(--ease-out) 0.42s forwards;
+      }
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        min-height: 44px; padding: 12px 22px;
+        border-radius: 980px;
+        font-size: 17px; font-weight: 400;
+        letter-spacing: -0.01em;
+        transition: transform 0.2s var(--ease), background 0.2s var(--ease), box-shadow 0.2s var(--ease);
+      }
+      .btn:active { transform: scale(0.98); }
+      .btn-primary {
+        background: var(--blue-btn);
+        color: #fff;
+        box-shadow: 0 0 0 0.5px rgba(255,255,255,0.12) inset;
+      }
+      .btn-primary:hover { background: var(--blue-btn-hover); }
+      .btn-secondary {
+        background: transparent;
+        color: var(--blue);
+        border: none;
+        padding: 12px 8px;
+      }
+      .btn-secondary:hover { text-decoration: underline; text-underline-offset: 3px; }
+      .btn-secondary .chev { margin-left: 4px; transition: transform 0.2s var(--ease); display: inline-block; }
+      .btn-secondary:hover .chev { transform: translateX(3px); }
+      .hero-meta {
+        margin-top: 48px;
+        display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: center;
+        font-size: 12px; color: var(--subtle);
+        opacity: 0; animation: rise 0.9s var(--ease-out) 0.5s forwards;
+      }
+      @keyframes rise {
+        from { opacity: 0; transform: translateY(18px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Sections */
+      .section {
+        width: min(var(--max), 100% - 40px);
+        margin: 0 auto;
+        padding: 100px 0;
+      }
+      .section + .section { border-top: 1px solid var(--border); }
+      .section-label {
+        font-size: 12px; font-weight: 600;
+        letter-spacing: 0.06em; text-transform: uppercase;
+        color: var(--blue); margin: 0 0 12px;
+      }
+      .section-title {
+        margin: 0 0 12px;
+        font-size: clamp(32px, 5vw, 48px);
+        font-weight: 600;
+        letter-spacing: -0.025em;
+        line-height: 1.1;
+      }
+      .section-sub {
+        margin: 0 0 48px;
+        font-size: 19px;
+        color: var(--muted);
+        max-width: 32em;
+        line-height: 1.45;
+        font-weight: 400;
+      }
+
+      /* Reveal on scroll */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+      }
+      .reveal.in { opacity: 1; transform: none; }
+      .reveal.d1 { transition-delay: 0.06s; }
+      .reveal.d2 { transition-delay: 0.12s; }
+      .reveal.d3 { transition-delay: 0.18s; }
+      .reveal.d4 { transition-delay: 0.24s; }
+
+      /* Experience cards */
+      .role {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 32px 28px;
+        margin-bottom: 16px;
+        transition: border-color 0.3s var(--ease), background 0.3s var(--ease), transform 0.3s var(--ease);
+      }
+      .role:hover {
+        border-color: var(--border-strong);
+        background: var(--surface-hover);
+      }
+      .role-top {
+        display: flex; flex-direction: column; gap: 8px;
+        margin-bottom: 20px;
+      }
+      @media (min-width: 640px) {
+        .role-top {
+          flex-direction: row; justify-content: space-between; align-items: flex-start;
         }
-        .nav-blur {
-            backdrop-filter: saturate(180%) blur(24px);
-            -webkit-backdrop-filter: saturate(180%) blur(24px);
-            background: rgba(0,0,0,0.78);
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+      }
+      .role-org {
+        display: flex; align-items: center; gap: 10px;
+        margin-bottom: 4px;
+      }
+      .role-org img { width: 22px; height: 22px; object-fit: contain; }
+      .role-org h3 {
+        margin: 0; font-size: 21px; font-weight: 600; letter-spacing: -0.02em;
+      }
+      .role-title {
+        margin: 0; font-size: 15px; color: var(--muted); font-weight: 400;
+      }
+      .role-dates {
+        margin: 0; font-size: 13px; color: var(--subtle); white-space: nowrap;
+      }
+      .role p.body {
+        margin: 0 0 14px;
+        font-size: 15px; color: var(--muted); line-height: 1.55;
+      }
+      .role ul {
+        margin: 0; padding: 0; list-style: none;
+      }
+      .role li {
+        position: relative;
+        padding-left: 18px;
+        margin-bottom: 8px;
+        font-size: 15px; color: rgba(245,245,247,0.78); line-height: 1.45;
+      }
+      .role li::before {
+        content: "";
+        position: absolute; left: 0; top: 0.55em;
+        width: 5px; height: 5px; border-radius: 50%;
+        background: var(--blue);
+      }
+      .pills {
+        display: flex; flex-wrap: wrap; gap: 8px;
+        margin-top: 20px;
+      }
+      .pill {
+        font-size: 12px; font-weight: 400;
+        color: var(--muted);
+        background: rgba(255,255,255,0.04);
+        border: 1px solid var(--border);
+        border-radius: 980px;
+        padding: 6px 12px;
+      }
+
+      /* Projects */
+      .projects {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      @media (min-width: 700px) {
+        .projects { grid-template-columns: 1fr 1fr; }
+        .projects .wide { grid-column: 1 / -1; }
+      }
+      .project {
+        display: flex; flex-direction: column;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 28px 26px 24px;
+        min-height: 220px;
+        transition: border-color 0.3s var(--ease), background 0.3s var(--ease), transform 0.35s var(--ease-out);
+      }
+      .project:hover {
+        border-color: rgba(41,151,255,0.28);
+        background: var(--surface-hover);
+        transform: translateY(-3px);
+      }
+      .project:focus-visible {
+        outline: 2px solid var(--blue);
+        outline-offset: 3px;
+      }
+      .project-top {
+        display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
+        margin-bottom: 12px;
+      }
+      .project h3 {
+        margin: 0; font-size: 21px; font-weight: 600; letter-spacing: -0.02em;
+      }
+      .live {
+        font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+        text-transform: uppercase; color: var(--blue); flex-shrink: 0;
+      }
+      .project p {
+        margin: 0 0 auto;
+        font-size: 15px; color: var(--muted); line-height: 1.5;
+        flex: 1;
+      }
+      .project-foot {
+        display: flex; align-items: center; justify-content: space-between;
+        margin-top: 22px; gap: 12px; flex-wrap: wrap;
+      }
+      .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+      .project-link {
+        font-size: 14px; color: var(--blue); font-weight: 400;
+        white-space: nowrap;
+      }
+      .project:hover .project-link .chev { transform: translateX(3px); }
+      .project-link .chev {
+        display: inline-block; transition: transform 0.2s var(--ease); margin-left: 2px;
+      }
+
+      /* Skills */
+      .skill-grid {
+        display: grid; gap: 14px;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 700px) {
+        .skill-grid { grid-template-columns: repeat(3, 1fr); }
+      }
+      .skill {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 28px 24px;
+        transition: border-color 0.3s var(--ease);
+      }
+      .skill:hover { border-color: var(--border-strong); }
+      .skill h3 {
+        margin: 0 0 10px; font-size: 17px; font-weight: 600; letter-spacing: -0.01em;
+      }
+      .skill p {
+        margin: 0; font-size: 14px; color: var(--muted); line-height: 1.5;
+      }
+
+      /* Education */
+      .edu-stack { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+      .edu {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 22px 24px;
+      }
+      .edu-row {
+        display: flex; flex-direction: column; gap: 6px;
+      }
+      @media (min-width: 560px) {
+        .edu-row {
+          flex-direction: row; justify-content: space-between; align-items: center;
         }
-        .hero-bg {
-            background:
-                radial-gradient(ellipse 100% 70% at 50% -15%, rgba(41, 151, 255, 0.22), transparent 55%),
-                radial-gradient(ellipse 50% 40% at 90% 40%, rgba(168, 85, 247, 0.08), transparent 50%),
-                #000;
+      }
+      .edu h3 { margin: 0; font-size: 17px; font-weight: 600; }
+      .edu .school { margin: 4px 0 0; font-size: 14px; color: var(--muted); }
+      .edu .when {
+        font-size: 13px; font-weight: 500; color: #30d158; white-space: nowrap;
+      }
+      .edu-certs {
+        margin-top: 16px; padding-top: 16px;
+        border-top: 1px solid var(--border);
+        display: flex; flex-direction: column; gap: 10px;
+      }
+      .edu-certs .line {
+        display: flex; flex-direction: column; gap: 2px;
+      }
+      @media (min-width: 560px) {
+        .edu-certs .line {
+          flex-direction: row; justify-content: space-between; align-items: center;
         }
-        .btn-primary {
-            background: linear-gradient(180deg, #0084ff 0%, #0071e3 100%);
-            box-shadow: 0 0 0 1px rgba(255,255,255,0.12) inset, 0 4px 18px rgba(0,113,227,0.4);
-            transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+      }
+      .edu-certs .line p { margin: 0; font-size: 14px; color: rgba(245,245,247,0.78); }
+      .cert-grid {
+        display: grid; gap: 12px;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 600px) {
+        .cert-grid { grid-template-columns: repeat(3, 1fr); }
+      }
+      .cert {
+        text-align: center;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 22px 16px;
+      }
+      .cert strong {
+        display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px;
+      }
+      .cert span { font-size: 12px; color: var(--subtle); }
+
+      /* CTA band */
+      .cta-band {
+        text-align: center;
+        padding: 120px 20px;
+        border-top: 1px solid var(--border);
+      }
+      .cta-band h2 {
+        margin: 0 0 16px;
+        font-size: clamp(32px, 5vw, 48px);
+        font-weight: 600;
+        letter-spacing: -0.025em;
+        line-height: 1.1;
+      }
+      .cta-band p {
+        margin: 0 auto 32px;
+        max-width: 28em;
+        font-size: 19px;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+      .cta-actions {
+        display: flex; flex-wrap: wrap; gap: 12px 20px; justify-content: center;
+      }
+
+      /* Footer */
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 28px 20px 40px;
+      }
+      .footer-inner {
+        width: min(var(--max), 100%);
+        margin: 0 auto;
+        display: flex; flex-direction: column; gap: 12px;
+        align-items: center; text-align: center;
+        font-size: 12px; color: var(--subtle);
+      }
+      @media (min-width: 700px) {
+        .footer-inner {
+          flex-direction: row; justify-content: space-between; text-align: left;
         }
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 0 0 1px rgba(255,255,255,0.18) inset, 0 8px 28px rgba(0,113,227,0.5);
-        }
-        .btn-secondary {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.16);
-            transition: all 0.25s ease;
-        }
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.11);
-            border-color: rgba(255,255,255,0.3);
-        }
-        .glass {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.07);
-        }
-        .text-gradient {
-            background: linear-gradient(90deg, #2997ff, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .section-divider {
-            border-top: 1px solid rgba(255,255,255,0.06);
-        }
-        .role-card {
-            background: rgba(255,255,255,0.025);
-            border: 1px solid rgba(255,255,255,0.07);
-            transition: border-color 0.3s ease;
-        }
-        .role-card:hover {
-            border-color: rgba(41,151,255,0.25);
-        }
-        .pill {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.09);
-        }
-        .project-card {
-            background: rgba(255,255,255,0.025);
-            border: 1px solid rgba(255,255,255,0.07);
-            transition: border-color 0.3s ease, transform 0.25s ease, background 0.25s ease;
-            display: block;
-            text-decoration: none;
-            color: inherit;
-        }
-        .project-card:hover {
-            border-color: rgba(41,151,255,0.35);
-            background: rgba(255,255,255,0.045);
-            transform: translateY(-2px);
-        }
-        .project-card:focus-visible {
-            outline: 2px solid #2997ff;
-            outline-offset: 3px;
-        }
-        .sr-only {
-            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-            overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
-        }
+      }
+      footer a { color: var(--subtle); transition: color 0.2s var(--ease); }
+      footer a:hover { color: var(--fg); }
+      .grad {
+        background: linear-gradient(90deg, #2997ff, #64d2ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 500;
+      }
     </style>
 </head>
-<body class="antialiased">
-
-    <!-- Nav -->
-    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur">
-        <div class="max-w-4xl mx-auto px-5 h-14 flex items-center justify-between">
-            <div class="flex items-center gap-2.5">
-                <img src="spacexai-x.png" alt="SpaceXAI" class="h-6 w-6">
-                <span class="text-sm font-semibold tracking-tight">Franklin Elliott</span>
+<body>
+    <nav class="nav" id="nav" aria-label="Primary">
+        <div class="nav-inner">
+            <a class="nav-brand" href="#">
+                <img src="spacexai-x.png" alt="" width="20" height="20">
+                <span>Franklin Elliott</span>
+            </a>
+            <div class="nav-links">
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#education">Education</a>
             </div>
-            <div class="hidden sm:flex items-center gap-7 text-[13px] text-white/55 font-medium">
-                <a href="#experience" class="hover:text-white transition">Experience</a>
-                <a href="#projects" class="hover:text-white transition">Projects</a>
-                <a href="#skills" class="hover:text-white transition">Skills</a>
-                <a href="#education" class="hover:text-white transition">Education</a>
-            </div>
-            <div class="flex items-center gap-4">
-                <a href="https://github.com/FranklinElliott" target="_blank" rel="noopener noreferrer" class="text-[13px] font-medium text-white/55 hover:text-white transition hidden xs:inline sm:inline">GitHub</a>
-                <a href="mailto:franklin.e.elliott@gmail.com" class="text-[13px] font-medium text-[#2997ff] hover:text-white transition">Contact</a>
-            </div>
+            <a class="nav-cta" href="mailto:franklin.e.elliott@gmail.com">Contact</a>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <header class="hero-bg pt-32 pb-20 px-5">
-        <div class="max-w-3xl mx-auto text-center">
-            <div class="flex justify-center mb-6">
-                <img src="spacexai-x.png" alt="SpaceXAI" class="h-14 w-14">
-            </div>
-            <p class="text-sm font-medium text-[#2997ff] tracking-wide mb-4">SpaceXAI · Colossus Supercluster</p>
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tighter leading-[1.08] mb-5">
-                Franklin Elliott
-            </h1>
-            <p class="text-xl sm:text-2xl text-white/60 font-normal mb-4">
-                Data Center Operations Technician
+    <header class="hero">
+        <div class="hero-inner">
+            <img class="hero-logo" src="spacexai-x.png" alt="SpaceXAI" width="56" height="56">
+            <p class="eyebrow">SpaceXAI · Colossus Supercluster</p>
+            <h1>Franklin Elliott</h1>
+            <p class="hero-role">Data Center Operations Technician</p>
+            <p class="hero-lede">
+                Focused on MTTD and MTTR for NVIDIA GB300 NVL72 liquid-cooled AI clusters at Macroharder.
+                B.S. Cybersecurity Technology. Former U.S. Navy AEGIS Computer Network Technician.
+                Open to exceptional opportunities only.
             </p>
-            <p class="text-base text-white/45 max-w-xl mx-auto mb-10 leading-relaxed">
-                Data Center Operations Technician focused on MTTD/MTTR for NVIDIA GB300 NVL72 liquid-cooled AI clusters at Macroharder. B.S. Cybersecurity Technology. Former U.S. Navy AEGIS Computer Network Technician (ACNT). Open to exceptional opportunities only.
-            </p>
-            <div class="flex flex-wrap justify-center gap-3">
-                <a href="mailto:franklin.e.elliott@gmail.com" class="btn-primary inline-flex items-center px-7 py-3 rounded-full text-white text-sm font-medium">
-                    Email me
-                </a>
-                <a href="https://linkedin.com/in/franklinelliott" target="_blank" rel="noopener noreferrer" class="btn-secondary inline-flex items-center px-7 py-3 rounded-full text-white text-sm font-medium">
-                    LinkedIn
-                </a>
-                <a href="https://github.com/FranklinElliott" target="_blank" rel="noopener noreferrer" class="btn-secondary inline-flex items-center px-7 py-3 rounded-full text-white text-sm font-medium">
-                    GitHub
-                </a>
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="mailto:franklin.e.elliott@gmail.com">Email me</a>
+                <a class="btn btn-secondary" href="https://linkedin.com/in/franklinelliott" target="_blank" rel="noopener noreferrer">LinkedIn <span class="chev" aria-hidden="true">›</span></a>
+                <a class="btn btn-secondary" href="https://github.com/FranklinElliott" target="_blank" rel="noopener noreferrer">GitHub <span class="chev" aria-hidden="true">›</span></a>
             </div>
-            <div class="mt-10 flex flex-wrap justify-center gap-6 text-sm text-white/30">
+            <div class="hero-meta">
                 <span>Southaven, MS</span>
                 <span>franklin.e.elliott@gmail.com</span>
             </div>
         </div>
     </header>
 
-    <!-- Experience -->
-    <section id="experience" class="max-w-3xl mx-auto px-5 py-20">
-        <h2 class="text-2xl font-semibold tracking-tight mb-10 text-white/90">Experience</h2>
+    <section class="section" id="experience">
+        <p class="section-label reveal">Experience</p>
+        <h2 class="section-title reveal">Built for the floor.</h2>
+        <p class="section-sub reveal">From AEGIS combat systems to liquid-cooled AI superclusters — production infrastructure under real pressure.</p>
 
-        <!-- SpaceXAI -->
-        <article class="role-card rounded-2xl p-7 md:p-8 mb-6">
-            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-5">
+        <article class="role reveal">
+            <div class="role-top">
                 <div>
-                    <div class="flex items-center gap-2.5 mb-1">
-                        <img src="spacexai-x.png" alt="" class="h-5 w-5">
-                        <h3 class="text-xl font-semibold tracking-tight">SpaceXAI (xAI)</h3>
+                    <div class="role-org">
+                        <img src="spacexai-x.png" alt="" width="22" height="22">
+                        <h3>SpaceXAI (xAI)</h3>
                     </div>
-                    <p class="text-white/50 text-sm">Data Center Operations Technician · Colossus Supercluster · Macroharder</p>
+                    <p class="role-title">Data Center Operations Technician · Colossus Supercluster · Macroharder</p>
                 </div>
-                <p class="text-sm text-white/35 whitespace-nowrap">May 2026 – Present · Southaven / Memphis</p>
+                <p class="role-dates">May 2026 – Present · Southaven / Memphis</p>
             </div>
-            <p class="text-white/60 text-[15px] leading-relaxed mb-4">
-                Responsible for the health of server and network infrastructure on one of the largest AI training clusters in the world. Focused on the two most important ops metrics: mean time to detect (MTTD) and mean time to repair (MTTR).
-            </p>
-            <p class="text-white/60 text-[15px] leading-relaxed mb-5">
-                Hands-on operations across 8 data halls (380 racks each) running NVIDIA GB300 NVL72 liquid-cooled systems. Each compute rack holds 18 nodes + 9 NVSwitches. Clusters are built 4:1 (4 compute racks to 1 network rack containing RoCE switches, Ethernet switches, and BMC switches).
-            </p>
-            <ul class="space-y-2 text-white/70 text-[15px]">
-                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Install, stage, cable, power, and hand off racks, servers, and switches for capacity allocation</li>
-                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Troubleshoot and repair servers, NVSwitches, interconnects, and network fabric under production pressure</li>
-                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Maintain RoCE, Ethernet, and BMC switches in network racks; deep Juniper & Cisco fabric work</li>
-                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Label, troubleshoot, and repair fiber/optics and power cabling</li>
-                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Manage Jira tickets end-to-end for installs, decommissions, component swaps, and incidents</li>
-                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Inventory & asset management, spare parts, vendor returns, SOPs, and documentation</li>
+            <p class="body">Responsible for the health of server and network infrastructure on one of the largest AI training clusters in the world. Focused on mean time to detect (MTTD) and mean time to repair (MTTR).</p>
+            <p class="body">Hands-on operations across 8 data halls (380 racks each) running NVIDIA GB300 NVL72 liquid-cooled systems. Each compute rack holds 18 nodes + 9 NVSwitches. Clusters are built 4:1 (4 compute racks to 1 network rack containing RoCE, Ethernet, and BMC switches).</p>
+            <ul>
+                <li>Install, stage, cable, power, and hand off racks, servers, and switches for capacity allocation</li>
+                <li>Troubleshoot and repair servers, NVSwitches, interconnects, and network fabric under production pressure</li>
+                <li>Maintain RoCE, Ethernet, and BMC switches; deep Juniper & Cisco fabric work</li>
+                <li>Label, troubleshoot, and repair fiber/optics and power cabling</li>
+                <li>Manage Jira tickets end-to-end for installs, decommissions, component swaps, and incidents</li>
+                <li>Inventory & asset management, spare parts, vendor returns, SOPs, and documentation</li>
             </ul>
-            <div class="mt-5 flex flex-wrap gap-2">
-                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">NVIDIA GB300 NVL72</span>
-                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">8 Data Halls · 380 Racks</span>
-                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">18 Nodes + 9 NVSwitches</span>
-                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">4:1 Topology</span>
-                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">RoCE · ETH · BMC</span>
-                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">Juniper · Cisco</span>
-                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">MTTD / MTTR</span>
-                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">Liquid Cooling</span>
+            <div class="pills">
+                <span class="pill">NVIDIA GB300 NVL72</span>
+                <span class="pill">8 Data Halls · 380 Racks</span>
+                <span class="pill">18 Nodes + 9 NVSwitches</span>
+                <span class="pill">4:1 Topology</span>
+                <span class="pill">RoCE · ETH · BMC</span>
+                <span class="pill">Juniper · Cisco</span>
+                <span class="pill">MTTD / MTTR</span>
+                <span class="pill">Liquid Cooling</span>
             </div>
         </article>
 
-        <!-- CBRE -->
-        <article class="role-card rounded-2xl p-7 md:p-8 mb-6">
-            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-5">
+        <article class="role reveal d1">
+            <div class="role-top">
                 <div>
-                    <div class="flex items-center gap-2.5 mb-1">
-                        <img src="cbre-logo.png" alt="CBRE" class="h-4 w-auto max-w-[56px] object-contain">
-                        <h3 class="text-xl font-semibold tracking-tight">CBRE · Hands & Eyes for Kyndryl</h3>
+                    <div class="role-org">
+                        <img src="cbre-logo.png" alt="CBRE" width="22" height="22" style="width:auto;max-width:52px;height:16px">
+                        <h3>CBRE · Hands & Eyes for Kyndryl</h3>
                     </div>
-                    <p class="text-white/50 text-sm">Data Center Technician · Co-location (IBM / Kyndryl)</p>
+                    <p class="role-title">Data Center Technician · Co-location (IBM / Kyndryl)</p>
                 </div>
-                <p class="text-sm text-white/35 whitespace-nowrap">Apr 2025 – Jan 2026 · Durham, NC</p>
+                <p class="role-dates">Apr 2025 – Jan 2026 · Durham, NC</p>
             </div>
-            <p class="text-white/60 text-[15px] leading-relaxed mb-5">
-                Hands-and-eyes support for Kyndryl (IBM infrastructure) in a large co-location facility. Environment included IBM Z-series mainframes, enterprise storage arrays, Dell servers, and multi-vendor gear under strict change management.
-            </p>
-            <ul class="space-y-2 text-white/70 text-[15px]">
-                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Install, decom and cable IBM Z-series, storage, Dell and multi-vendor hardware</li>
-                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Connectivity troubleshooting and component replacement</li>
-                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Environmental monitoring, escalation and full documentation</li>
-                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Strict change control and customer-facing coordination</li>
+            <p class="body">Hands-and-eyes support for Kyndryl (IBM infrastructure) in a large co-location facility. Environment included IBM Z-series mainframes, enterprise storage arrays, Dell servers, and multi-vendor gear under strict change management.</p>
+            <ul>
+                <li>Install, decom and cable IBM Z-series, storage, Dell and multi-vendor hardware</li>
+                <li>Connectivity troubleshooting and component replacement</li>
+                <li>Environmental monitoring, escalation and full documentation</li>
+                <li>Strict change control and customer-facing coordination</li>
             </ul>
         </article>
 
-        <!-- Navy -->
-        <article class="role-card rounded-2xl p-7 md:p-8">
-            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-5">
+        <article class="role reveal d2">
+            <div class="role-top">
                 <div>
-                    <div class="flex items-center gap-2.5 mb-1">
-                        <img src="navy-logo.png" alt="U.S. Navy" class="h-5 w-5 object-contain">
-                        <h3 class="text-xl font-semibold tracking-tight">U.S. Navy · USS Benfold (DDG-65)</h3>
+                    <div class="role-org">
+                        <img src="navy-logo.png" alt="U.S. Navy" width="22" height="22">
+                        <h3>U.S. Navy · USS Benfold (DDG-65)</h3>
                     </div>
-                    <p class="text-white/50 text-sm">AEGIS Computer Network Technician (ACNT / V69A) · E-6</p>
+                    <p class="role-title">AEGIS Computer Network Technician (ACNT / V69A) · E-6</p>
                 </div>
-                <p class="text-sm text-white/35 whitespace-nowrap">Jan 2015 – Jan 2025 · Yokosuka, Japan</p>
+                <p class="role-dates">Jan 2015 – Jan 2025 · Yokosuka, Japan</p>
             </div>
-            <p class="text-white/60 text-[15px] leading-relaxed mb-5">
-                AEGIS Computer Network Technician (ACNT) on USS Benfold (DDG-65), forward-deployed Yokosuka, Japan. Primary role supporting AEGIS Baseline 9 systems — IBM bladeless servers, iSCSI & SAN storage, combat system consoles, and the AEGIS Weapon System. Later held the leadership position of Combat Systems Officer of the Watch (CSOOW).
-            </p>
-            <ul class="space-y-2 text-white/70 text-[15px]">
-                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Primary: AEGIS Computer Network Technician (ACNT) on AEGIS Baseline 9</li>
-                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> IBM bladeless servers, iSCSI, SAN, combat consoles & Weapon System</li>
-                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Later held CSOOW (Combat Systems Officer of the Watch) leadership watch</li>
-                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Secure networks, fault isolation, DoD cyber standards</li>
-                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Led and mentored junior technicians</li>
-                <li class="flex gap-2.5"><span class="text-[#2997ff] shrink-0">▸</span> Previously held Secret clearance · Honorable Discharge</li>
+            <p class="body">AEGIS Computer Network Technician on USS Benfold (DDG-65), forward-deployed Yokosuka, Japan. Supported AEGIS Baseline 9 systems — IBM bladeless servers, iSCSI & SAN storage, combat system consoles, and the AEGIS Weapon System. Later held CSOOW (Combat Systems Officer of the Watch).</p>
+            <ul>
+                <li>Primary: AEGIS Computer Network Technician (ACNT) on AEGIS Baseline 9</li>
+                <li>IBM bladeless servers, iSCSI, SAN, combat consoles & Weapon System</li>
+                <li>Later held CSOOW leadership watch</li>
+                <li>Secure networks, fault isolation, DoD cyber standards</li>
+                <li>Led and mentored junior technicians</li>
+                <li>Previously held Secret clearance · Honorable Discharge</li>
             </ul>
-            <div class="mt-5 flex flex-wrap gap-2">
-                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">ACNT</span>
-                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">AEGIS BL9</span>
-                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">CSOOW (Leadership)</span>
-                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">DDG-65 Yokosuka</span>
-                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">E-6</span>
-                <span class="pill text-xs px-3 py-1 rounded-full text-white/50">Secret Clearance</span>
+            <div class="pills">
+                <span class="pill">ACNT</span>
+                <span class="pill">AEGIS BL9</span>
+                <span class="pill">CSOOW</span>
+                <span class="pill">DDG-65 Yokosuka</span>
+                <span class="pill">E-6</span>
+                <span class="pill">Secret Clearance</span>
             </div>
         </article>
     </section>
 
-
-    <!-- Projects -->
-    <section id="projects" class="section-divider max-w-3xl mx-auto px-5 py-16">
-        <h2 class="text-2xl font-semibold tracking-tight mb-3 text-white/90">Projects</h2>
-        <p class="text-white/45 text-[15px] mb-8 max-w-xl leading-relaxed">
-            Live tools for the floor, the stream, and the timeline — built and shipped publicly.
-        </p>
-        <div class="grid sm:grid-cols-2 gap-4">
-            <a class="project-card rounded-2xl p-6" href="https://franklinelliott.github.io/gb300-nvl72-su-explorer/" target="_blank" rel="noopener noreferrer">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <h3 class="font-semibold text-white/90 tracking-tight">GB300 NVL72 Explorer</h3>
-                    <span class="text-[11px] uppercase tracking-wide text-[#2997ff]/Live</span>
+    <section class="section" id="projects">
+        <p class="section-label reveal">Projects</p>
+        <h2 class="section-title reveal">Built in public.</h2>
+        <p class="section-sub reveal">Live tools for the floor, the stream, and the timeline.</p>
+        <div class="projects">
+            <a class="project reveal" href="https://franklinelliott.github.io/gb300-nvl72-su-explorer/" target="_blank" rel="noopener noreferrer">
+                <div class="project-top">
+                    <h3>GB300 NVL72 Explorer</h3>
+                    <span class="live">Live</span>
                 </div>
-                <p class="text-sm text-white/50 leading-relaxed mb-4">
-                    Interactive 3D schematic of a Dell IR9048 / GB300 NVL72 rack with field troubleshooting guidance for CT, NVS, and cable cartridges.
-                </p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">Three.js</span>
-                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">TypeScript</span>
-                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">Ops training</span>
+                <p>Interactive 3D schematic of a Dell IR9048 / GB300 NVL72 rack with field troubleshooting for CT, NVS, and cable cartridges.</p>
+                <div class="project-foot">
+                    <div class="project-tags">
+                        <span class="pill">Three.js</span>
+                        <span class="pill">Ops training</span>
+                    </div>
+                    <span class="project-link">Open <span class="chev" aria-hidden="true">›</span></span>
                 </div>
             </a>
-            <a class="project-card rounded-2xl p-6" href="https://franklinelliott.github.io/clip-desk/" target="_blank" rel="noopener noreferrer">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <h3 class="font-semibold text-white/90 tracking-tight">Clip Desk</h3>
-                    <span class="text-[11px] uppercase tracking-wide text-[#2997ff]">Live</span>
+            <a class="project reveal d1" href="https://franklinelliott.github.io/clip-desk/" target="_blank" rel="noopener noreferrer">
+                <div class="project-top">
+                    <h3>Clip Desk</h3>
+                    <span class="live">Live</span>
                 </div>
-                <p class="text-sm text-white/50 leading-relaxed mb-4">
-                    Twitch clip workbench: score viral peaks, draft X / TikTok / Shorts / Reels captions, mark trims, and queue posts.
-                </p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">React</span>
-                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">Twitch Helix</span>
-                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">Creators</span>
-                </div>
-            </a>
-            <a class="project-card rounded-2xl p-6" href="https://franklinelliott.github.io/emote-studio/" target="_blank" rel="noopener noreferrer">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <h3 class="font-semibold text-white/90 tracking-tight">Emote Studio</h3>
-                    <span class="text-[11px] uppercase tracking-wide text-[#2997ff]">Live</span>
-                </div>
-                <p class="text-sm text-white/50 leading-relaxed mb-4">
-                    Create, recolor, and export Twitch + 7TV emote packs (PNG sizes and animated GIF) entirely in the browser.
-                </p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">Canvas</span>
-                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">7TV</span>
-                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">Client-side</span>
+                <p>Twitch clip workbench: score viral peaks, draft X / TikTok / Shorts / Reels captions, mark trims, and queue posts.</p>
+                <div class="project-foot">
+                    <div class="project-tags">
+                        <span class="pill">React</span>
+                        <span class="pill">Creators</span>
+                    </div>
+                    <span class="project-link">Open <span class="chev" aria-hidden="true">›</span></span>
                 </div>
             </a>
-            <a class="project-card rounded-2xl p-6" href="https://franklinelliott.github.io/cough-counter/" target="_blank" rel="noopener noreferrer">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <h3 class="font-semibold text-white/90 tracking-tight">Cough Counter</h3>
-                    <span class="text-[11px] uppercase tracking-wide text-[#2997ff]">Live</span>
+            <a class="project reveal d2" href="https://franklinelliott.github.io/emote-studio/" target="_blank" rel="noopener noreferrer">
+                <div class="project-top">
+                    <h3>Emote Studio</h3>
+                    <span class="live">Live</span>
                 </div>
-                <p class="text-sm text-white/50 leading-relaxed mb-4">
-                    Transparent OBS Browser Source with manual hotkeys, mic auto-detect, live room sync, and per-hour stats.
-                </p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">OBS</span>
-                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">Web Audio</span>
-                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">Streaming</span>
+                <p>Create, recolor, and export Twitch + 7TV emote packs — PNG sizes and animated GIF — entirely in the browser.</p>
+                <div class="project-foot">
+                    <div class="project-tags">
+                        <span class="pill">Canvas</span>
+                        <span class="pill">7TV</span>
+                    </div>
+                    <span class="project-link">Open <span class="chev" aria-hidden="true">›</span></span>
                 </div>
             </a>
-            <a class="project-card rounded-2xl p-6 sm:col-span-2" href="https://franklinelliott.github.io/creeationally/" target="_blank" rel="noopener noreferrer">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <h3 class="font-semibold text-white/90 tracking-tight">Creeationally — A–Z Marathon Overlay</h3>
-                    <span class="text-[11px] uppercase tracking-wide text-[#2997ff]">Live</span>
+            <a class="project reveal d3" href="https://franklinelliott.github.io/cough-counter/" target="_blank" rel="noopener noreferrer">
+                <div class="project-top">
+                    <h3>Cough Counter</h3>
+                    <span class="live">Live</span>
                 </div>
-                <p class="text-sm text-white/50 leading-relaxed mb-4">
-                    Alphabetical game marathon control panel + themed OBS overlay: per-letter covers, dual timers, challenges, multi-option letters.
-                </p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">OBS overlay</span>
-                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">Streamer tools</span>
-                    <span class="pill text-xs px-2.5 py-1 rounded-full text-white/45">Static site</span>
+                <p>Transparent OBS Browser Source with hotkeys, mic auto-detect, live room sync, and per-hour stats.</p>
+                <div class="project-foot">
+                    <div class="project-tags">
+                        <span class="pill">OBS</span>
+                        <span class="pill">Web Audio</span>
+                    </div>
+                    <span class="project-link">Open <span class="chev" aria-hidden="true">›</span></span>
+                </div>
+            </a>
+            <a class="project wide reveal d4" href="https://franklinelliott.github.io/creeationally/" target="_blank" rel="noopener noreferrer">
+                <div class="project-top">
+                    <h3>Creeationally — A–Z Marathon Overlay</h3>
+                    <span class="live">Live</span>
+                </div>
+                <p>Alphabetical game marathon control panel and themed OBS overlay: per-letter covers, dual timers, challenges, multi-option letters.</p>
+                <div class="project-foot">
+                    <div class="project-tags">
+                        <span class="pill">OBS overlay</span>
+                        <span class="pill">Streamer tools</span>
+                    </div>
+                    <span class="project-link">Open <span class="chev" aria-hidden="true">›</span></span>
                 </div>
             </a>
         </div>
-        <p class="mt-6 text-sm text-white/35">
-            Source on
-            <a href="https://github.com/FranklinElliott" target="_blank" rel="noopener noreferrer" class="text-[#2997ff] hover:text-white transition">github.com/FranklinElliott</a>
-        </p>
     </section>
 
-    <!-- Skills -->
-    <section id="skills" class="section-divider max-w-3xl mx-auto px-5 py-16">
-        <h2 class="text-2xl font-semibold tracking-tight mb-8 text-white/90">Skills</h2>
-        <div class="grid sm:grid-cols-3 gap-4">
-            <div class="glass rounded-xl p-6">
-                <h3 class="font-semibold mb-3 text-white/90">Data Center Ops</h3>
-                <p class="text-sm text-white/50 leading-relaxed">
-                    Rack & stack · Fiber / Optics · Power · Hardware lifecycle · Asset management · NVIDIA GB300 · Liquid cooling · High-density AI infrastructure
-                </p>
+    <section class="section" id="skills">
+        <p class="section-label reveal">Skills</p>
+        <h2 class="section-title reveal">Depth where it counts.</h2>
+        <p class="section-sub reveal">Operations, networking, and security process — the stack that keeps clusters healthy.</p>
+        <div class="skill-grid">
+            <div class="skill reveal">
+                <h3>Data Center Ops</h3>
+                <p>Rack & stack · Fiber / Optics · Power · Hardware lifecycle · Asset management · NVIDIA GB300 · Liquid cooling · High-density AI infrastructure</p>
             </div>
-            <div class="glass rounded-xl p-6">
-                <h3 class="font-semibold mb-3 text-white/90">Networking</h3>
-                <p class="text-sm text-white/50 leading-relaxed">
-                    TCP/IP · VLANs · DNS/DHCP · Juniper · Cisco · RoCE / ETH / BMC switches · Routing & switching · Fault isolation
-                </p>
+            <div class="skill reveal d1">
+                <h3>Networking</h3>
+                <p>TCP/IP · VLANs · DNS/DHCP · Juniper · Cisco · RoCE / ETH / BMC switches · Routing & switching · Fault isolation</p>
             </div>
-            <div class="glass rounded-xl p-6">
-                <h3 class="font-semibold mb-3 text-white/90">Security & Process</h3>
-                <p class="text-sm text-white/50 leading-relaxed">
-                    DoD standards · Access control · Change control · Jira · SOPs · MTTD/MTTR · Mentoring · Incident response · CSOOW (leadership)
-                </p>
+            <div class="skill reveal d2">
+                <h3>Security & Process</h3>
+                <p>DoD standards · Access control · Change control · Jira · SOPs · MTTD/MTTR · Mentoring · Incident response · CSOOW</p>
             </div>
         </div>
     </section>
 
-    <!-- Education -->
-    <section id="education" class="section-divider max-w-3xl mx-auto px-5 py-16">
-        <h2 class="text-2xl font-semibold tracking-tight mb-8 text-white/90">Education & Certifications</h2>
-        <div class="space-y-3">
-            <div class="glass rounded-xl p-5">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+    <section class="section" id="education">
+        <p class="section-label reveal">Education</p>
+        <h2 class="section-title reveal">Credentials that hold up.</h2>
+        <p class="section-sub reveal">Cybersecurity technology, threat hunting, and data centre operations certification.</p>
+        <div class="edu-stack">
+            <div class="edu reveal">
+                <div class="edu-row">
                     <div>
-                        <h3 class="font-semibold text-white/90">B.S. Cybersecurity Technology</h3>
-                        <p class="text-sm text-white/45">University of Maryland Global Campus</p>
+                        <h3>B.S. Cybersecurity Technology</h3>
+                        <p class="school">University of Maryland Global Campus</p>
                     </div>
-                    <span class="text-sm text-green-500 font-medium whitespace-nowrap">August 2026</span>
+                    <span class="when">August 2026</span>
                 </div>
-                <div class="mt-4 pt-4 border-t border-white/8 space-y-2.5">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                        <p class="text-sm text-white/70">Undergraduate Certificate · Vulnerability Assessment</p>
-                        <span class="text-xs text-green-500/90 font-medium whitespace-nowrap">August 2026</span>
+                <div class="edu-certs">
+                    <div class="line">
+                        <p>Undergraduate Certificate · Vulnerability Assessment</p>
+                        <span class="when">August 2026</span>
                     </div>
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                        <p class="text-sm text-white/70">Undergraduate Certificate · Cyber Threat Hunting</p>
-                        <span class="text-xs text-green-500/90 font-medium whitespace-nowrap">May 2026</span>
+                    <div class="line">
+                        <p>Undergraduate Certificate · Cyber Threat Hunting</p>
+                        <span class="when">May 2026</span>
                     </div>
                 </div>
             </div>
-            <div class="glass rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <div>
-                    <h3 class="font-semibold text-white/90">Associate of Arts · Computer Studies</h3>
-                    <p class="text-sm text-white/45">University of Maryland Global Campus</p>
+            <div class="edu reveal d1">
+                <div class="edu-row">
+                    <div>
+                        <h3>Associate of Arts · Computer Studies</h3>
+                        <p class="school">University of Maryland Global Campus</p>
+                    </div>
+                    <span class="when">December 2025</span>
                 </div>
-                <span class="text-sm text-green-500 font-medium whitespace-nowrap">December 2025</span>
             </div>
         </div>
-
-        <div class="mt-6 grid sm:grid-cols-3 gap-3">
-            <div class="glass rounded-xl p-5 text-center">
-                <div class="font-semibold text-white/90 text-sm">CompTIA Security+</div>
-                <div class="text-xs text-white/40 mt-1">SY0-701 · Feb 2026</div>
-            </div>
-            <div class="glass rounded-xl p-5 text-center">
-                <div class="font-semibold text-white/90 text-sm">CDCTP®</div>
-                <div class="text-xs text-white/40 mt-1">Data Centre Tech · Sep 2025</div>
-            </div>
-            <div class="glass rounded-xl p-5 text-center">
-                <div class="font-semibold text-white/90 text-sm">First Aid / CPR / AED</div>
-                <div class="text-xs text-white/40 mt-1">Heartsaver · 2025</div>
-            </div>
+        <div class="cert-grid">
+            <div class="cert reveal"><strong>CompTIA Security+</strong><span>SY0-701 · Feb 2026</span></div>
+            <div class="cert reveal d1"><strong>CDCTP®</strong><span>Data Centre Tech · Sep 2025</span></div>
+            <div class="cert reveal d2"><strong>First Aid / CPR / AED</strong><span>Heartsaver · 2025</span></div>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="section-divider max-w-3xl mx-auto px-5 py-20 text-center">
-        <h2 class="text-3xl font-semibold tracking-tight mb-4">Happy where I am.<br>Open to what’s next.</h2>
-        <p class="text-white/50 mb-8 max-w-md mx-auto leading-relaxed">
-            I love my work at SpaceXAI. I’m not looking to leave — but if you have something truly exceptional, I’d be glad to talk.
-        </p>
-        <div class="flex flex-wrap justify-center gap-3">
-            <a href="mailto:franklin.e.elliott@gmail.com" class="btn-primary inline-flex items-center px-7 py-3 rounded-full text-white text-sm font-medium">
-                Email me
-            </a>
-            <a href="https://linkedin.com/in/franklinelliott" target="_blank" rel="noopener noreferrer" class="btn-secondary inline-flex items-center px-7 py-3 rounded-full text-white text-sm font-medium">
-                LinkedIn
-            </a>
+    <section class="cta-band">
+        <h2 class="reveal">Happy where I am.<br>Open to what’s next.</h2>
+        <p class="reveal d1">I love my work at SpaceXAI. I’m not looking to leave — but if you have something truly exceptional, I’d be glad to talk.</p>
+        <div class="cta-actions reveal d2">
+            <a class="btn btn-primary" href="mailto:franklin.e.elliott@gmail.com">Email me</a>
+            <a class="btn btn-secondary" href="https://linkedin.com/in/franklinelliott" target="_blank" rel="noopener noreferrer">LinkedIn <span class="chev" aria-hidden="true">›</span></a>
+            <a class="btn btn-secondary" href="https://github.com/FranklinElliott" target="_blank" rel="noopener noreferrer">GitHub <span class="chev" aria-hidden="true">›</span></a>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="border-t border-white/6 py-8 px-5">
-        <div class="max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/30">
+    <footer>
+        <div class="footer-inner">
             <p>© 2026 Franklin Elliott</p>
-            <p class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
-                <span>Data Center Ops · AI Infrastructure · U.S. Navy Veteran</span>
-                <a href="https://github.com/FranklinElliott" target="_blank" rel="noopener noreferrer" class="hover:text-white/60 transition">GitHub</a>
-            </p>
-            <p>Made with <span class="text-gradient font-medium">Grok</span></p>
+            <p>Data Center Ops · AI Infrastructure · U.S. Navy Veteran · <a href="https://github.com/FranklinElliott" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+            <p>Made with <span class="grad">Grok</span></p>
         </div>
     </footer>
-<!-- cache-bust: 1786081504 -->
+
+    <script>
+      (function () {
+        var nav = document.getElementById('nav');
+        var onScroll = function () {
+          if (!nav) return;
+          nav.classList.toggle('scrolled', window.scrollY > 8);
+        };
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+
+        var nodes = document.querySelectorAll('.reveal');
+        if (!('IntersectionObserver' in window)) {
+          nodes.forEach(function (n) { n.classList.add('in'); });
+          return;
+        }
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('in');
+              io.unobserve(e.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+        nodes.forEach(function (n) { io.observe(n); });
+      })();
+    </script>
+<!-- cache-bust: 1786081877 -->
 </body>
 </html>
